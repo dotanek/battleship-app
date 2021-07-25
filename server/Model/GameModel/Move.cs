@@ -13,7 +13,13 @@ namespace BattleshipAPI.Model
     {
         public int X { get; }
         public int Y { get; }
-        public PlayerNumber Player { get; }
+        public PlayerNumber Player { get; set; }
+
+        public Move(int x, int y)
+        {
+            X = x;
+            Y = y;
+        }
 
         public Move(int x, int y, PlayerNumber player)
         {

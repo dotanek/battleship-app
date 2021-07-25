@@ -27,7 +27,8 @@ namespace BattleshipsAPI
         public void ConfigureServices(IServiceCollection services)
         {
             // Adding random generator to the game manager.
-            services.AddTransient(s => new GameManager(new RandomBoardGenerator()));
+            services.AddTransient<IBoardGenerator, RandomBoardGenerator>();
+            services.AddTransient<IComputerPlayer, RandomComputerPlayer>();
 
             services.AddControllers();
         }

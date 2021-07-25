@@ -15,16 +15,20 @@ namespace BattleshipAPI.Controllers
     {
         private readonly GameManager _gameManager;
 
-        public GameController(GameManager gameManager)
+        public GameController(IBoardGenerator boardGenerator, IComputerPlayer computerPlayer)
         {
-            _gameManager = gameManager;
+            _gameManager = new GameManager(boardGenerator, computerPlayer);
         }
 
-        [HttpGet]
-        public ActionResult Test()
+        // GET api/[controller]/simulate
+        [HttpGet("simulate")]
+        public ActionResult SimulateGame()
         {
-            _gameManager.CreateGame();
-            return Ok("test");
+            Game game = _gameManager.SimulateGame();
+            //System.Diagnostics.Debug.WriteLine(game.PlayerOneBoard.ToString());
+            //System.Diagnostics.Debug.WriteLine(game.PlayerTwoBoard.ToString());
+
+            return Ok("Debug");
         }
     }
 }
