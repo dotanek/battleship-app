@@ -8,10 +8,10 @@ namespace BattleshipAPI.Model
     /* Up and Left decrease index, Right and Down increase index. */
     public enum Direction
     {
-        Up,
-        Right,
-        Down,
-        Left
+        Up = 0,
+        Right = 1,
+        Down = 2,
+        Left = 3
     }
 
     enum ShipLength

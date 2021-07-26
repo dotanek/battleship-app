@@ -22,6 +22,8 @@ npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 
+.vscode
+
 
 # APS.Net - source: https://raw.githubusercontent.com/OmniSharp/generator-aspnet/master/templates/gitignore.txt
 

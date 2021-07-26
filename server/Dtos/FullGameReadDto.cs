@@ -6,23 +6,30 @@ using System.Threading.Tasks;
 
 namespace BattleshipAPI.Dtos
 {
+    public class ShipReadDto
+    {
+        public string ShipType { get; }
+        public int Length { get; }
+        public Position Position { get; set; }
+
+        public ShipReadDto(Ship ship)
+        {
+            // Getting derivative name as string for potantial rendering on client side.
+            ShipType = ship.GetType().Name;
+            Length = ship.Length;
+            Position = ship.Position;
+        }
+    }
     public class FullGameReadDto
     {
-        public List<Ship> PlayerOneShips { get; }
-        public List<Ship> PlayerTwoShips { get; }
+        public List<ShipReadDto> PlayerOneShips { get; }
+        public List<ShipReadDto> PlayerTwoShips { get; }
         public List<Move> Moves { get; }
-
-        public FullGameReadDto(List<Ship> playerOneShips, List<Ship> playerTwoShips, List<Move> moves)
-        {
-            PlayerOneShips = playerOneShips;
-            PlayerTwoShips = playerTwoShips;
-            Moves = moves;
-        }
 
         public FullGameReadDto(Game game)
         {
-            PlayerOneShips = game.PlayerOneBoard.Ships;
-            PlayerTwoShips = game.PlayerTwoBoard.Ships;
+            PlayerOneShips = game.PlayerOneBoard.Ships.Select(s => new ShipReadDto(s)).ToList();
+            PlayerTwoShips = game.PlayerTwoBoard.Ships.Select(s => new ShipReadDto(s)).ToList();
             Moves = game.Moves;
         }
     }

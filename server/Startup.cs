@@ -26,8 +26,12 @@ namespace BattleshipsAPI
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            // Adding random generator to the game manager.
+            services.AddCors();
+
+            // Adding random generator for the game manager.
             services.AddTransient<IBoardGenerator, RandomBoardGenerator>();
+
+            // Adding AI for game manager.
             services.AddTransient<IComputerPlayer, ConsequentComputerPlayer>();
 
             services.AddControllers();
@@ -36,6 +40,13 @@ namespace BattleshipsAPI
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
+
+            app.UseCors(builder => builder
+                 .AllowAnyOrigin()
+                 .AllowAnyMethod()
+                 .AllowAnyHeader());
+
+
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();

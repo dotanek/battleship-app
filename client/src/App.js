@@ -1,7 +1,25 @@
-import "./App.css";
+import React, { Component } from "react";
+import styled from "styled-components";
 
-function App() {
-  return <h1>Hello world!</h1>;
+import Game from "./components/Game";
+
+const Container = styled.div`
+  display: flex;
+  width: 100vw;
+  height: 100vh;
+  align-items: center;
+  justify-content: center;
+`;
+
+class App extends Component {
+  state = {};
+  render() {
+    return (
+      <Container>
+        <Game></Game>
+      </Container>
+    );
+  }
 }
 
 export default App;
