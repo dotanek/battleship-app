@@ -13,19 +13,15 @@ namespace BattleshipAPI.Model
     {
         public int X { get; }
         public int Y { get; }
+        public bool Hit { get; set; } = false;
+        public bool Sink { get; set; } = false;
+        public bool Win { get; set; } = false;
         public PlayerNumber Player { get; set; }
 
         public Move(int x, int y)
         {
             X = x;
             Y = y;
-        }
-
-        public Move(int x, int y, PlayerNumber player)
-        {
-            X = x;
-            Y = y;
-            Player = player;
         }
     }
 }

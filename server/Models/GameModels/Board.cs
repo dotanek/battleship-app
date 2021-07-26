@@ -11,7 +11,7 @@ namespace BattleshipAPI.Model
         public List<Ship> Ships { get; set; }
         
         /* Must be 100 length at all times */
-        public Field[] Fields { get; }
+        private Field[] Fields { get; }
 
         public Board()
         {

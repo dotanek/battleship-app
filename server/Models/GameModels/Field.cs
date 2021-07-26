@@ -7,7 +7,7 @@ namespace BattleshipAPI.Model
 {
     public class Field
     {
-        public bool Attacked { get; set; }
+        public bool Attacked { get; private set; }
         public Ship Ship { get; set; }
 
         public Field(Ship ship = null)

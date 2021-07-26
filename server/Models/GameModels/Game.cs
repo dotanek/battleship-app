@@ -9,7 +9,7 @@ namespace BattleshipAPI.Model
     {
         public Board PlayerOneBoard { get; }
         public Board PlayerTwoBoard { get; }
-        public List<Move> Moves { get; private set; } = new List<Move>();
+        public List<Move> Moves { get; } = new List<Move>();
 
         public Game(Board playerOneBoard, Board playerTwoBoard)
         {

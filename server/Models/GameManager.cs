@@ -18,6 +18,7 @@ namespace BattleshipAPI.Model
 
         public Game CreateGame(Board playerOneBoard = null, Board playerTwoBoard = null)
         {
+            // If board is not provided it's generated using given generator.
             if (playerOneBoard == null)
             {
                 playerOneBoard = _generator.Generate();
@@ -44,8 +45,7 @@ namespace BattleshipAPI.Model
         }
 
         // Returns information if move was a hit.
-        // TODO If sunk mark all fields around as hit
-        public bool ApplyMove(Move move, Game game, PlayerNumber player)
+        public void ApplyMove(Move move, Game game, PlayerNumber player)
         {
             move.Player = player;
 
@@ -66,26 +66,29 @@ namespace BattleshipAPI.Model
 
             if (target.Attack())
             {
+                move.Hit = true;
+
                 // If the ship has been sunk all the fields around it are marked as attacked.
                 if (target.Ship.isSunk())
                 {
+                    move.Sink = true;
                     MarkSurroundings(move, board);
+
+                    if (board.IsDefeated())
+                    {
+                        move.Win = true; 
+                    }
                 }
-
-                return true;
             }
-
-            return false;
         }
 
         public void MarkSurroundings(Move move, Board board)
         {
+            // Finding where the ship starts and ends and expanding the one in each direction.
             int xStart = move.X;
             int xEnd = move.X;
             int yStart = move.Y;
             int yEnd = move.Y;
-
-            // Finding where the ship starts and ends.
 
             while (board.GetFieldByCoordinates(xStart, move.Y).Ship != null && xStart > 0)
             {
@@ -142,9 +145,9 @@ namespace BattleshipAPI.Model
 
                 Move move = GetComputerMove(game, player);
 
-                if (ApplyMove(move, game, player))
+                ApplyMove(move, game, player);
                 {
-                    if (game.IsFinished())
+                    if (move.Win)
                     {
                         unfinished = false;
                     }

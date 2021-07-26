@@ -6,6 +6,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.Extensions.Configuration;
 using BattleshipAPI.Model;
+using BattleshipAPI.Dtos;
 
 namespace BattleshipAPI.Controllers
 {
@@ -22,13 +23,19 @@ namespace BattleshipAPI.Controllers
 
         // GET api/[controller]/simulate
         [HttpGet("simulate")]
-        public ActionResult SimulateGame()
+        public ActionResult<FullGameReadDto> SimulateGame()
         {
-            Game game = _gameManager.SimulateGame();
-            //System.Diagnostics.Debug.WriteLine(game.PlayerOneBoard.ToString());
-            //System.Diagnostics.Debug.WriteLine(game.PlayerTwoBoard.ToString());
+            try
+            {
+                Game game = _gameManager.SimulateGame();
+                FullGameReadDto gameRead = new FullGameReadDto(game);
 
-            return Ok("Debug");
+                return Ok(gameRead);
+            }
+            catch
+            {
+                return StatusCode(500);
+            }
         }
     }
 }
