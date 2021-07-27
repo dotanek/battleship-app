@@ -118,6 +118,7 @@ class Game extends Component {
         console.log(res.data);
       })
       .catch((err) => {
+		alert("Error occured while fetching data.")
         console.log(err?.response);
       });
   };
@@ -153,6 +154,10 @@ class Game extends Component {
   };
 
   onClickStart = () => {
+	if (!this.gameplay) {
+      return;
+    }
+	  
     // If the game is already being animated we stop the interval and change the flag.
     if (this.state.playing) {
       clearInterval(this.gameplay.interval);
@@ -180,7 +185,7 @@ class Game extends Component {
   };
 
   onClickReset = () => {
-    if (this.gameplay.interval) {
+    if (this.gameplay?.interval) {
       const game = this.state.game;
       game.playerOne.fields = [...Array(100)].map(() => fieldType.EMPTY);
       game.playerTwo.fields = [...Array(100)].map(() => fieldType.EMPTY);
@@ -192,7 +197,7 @@ class Game extends Component {
   };
 
   onClickReGenerate = () => {
-    clearInterval(this.gameplay.interval);
+    clearInterval(this.gameplay?.interval);
     this.setState({ playing: false });
 
     this.fetchSimulation();
