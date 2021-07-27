@@ -20,6 +20,7 @@ namespace BattleshipAPI.Dtos
             Position = ship.Position;
         }
     }
+
     public class FullGameReadDto
     {
         public List<ShipReadDto> PlayerOneShips { get; }
