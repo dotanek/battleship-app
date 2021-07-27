@@ -41,45 +41,5 @@ namespace BattleshipAPI.Model
 
             return true;
         }
-
-        // FOR DEBUG PURPOSES TODO REMOVE
-        public string ToString()
-        {
-            StringBuilder stringBuilder = new StringBuilder();
-
-            for (int i = 0; i < Fields.Length; i++)
-            {
-                Field field = Fields[i];
-                if (field.Attacked)
-                {
-                    if (field.Ship != null)
-                    {
-                        stringBuilder.Append(" # ");
-                    }
-                    else
-                    {
-                        stringBuilder.Append(" x ");
-                    }
-                }
-                else
-                {
-                    if (field.Ship != null)
-                    {
-                        stringBuilder.Append(" " + field.Ship.ToString() + " ");
-                    }
-                    else
-                    {
-                        stringBuilder.Append(" - ");
-                    }
-                }
-
-                if ((i + 1) % 10 == 0)
-                {
-                    stringBuilder.Append("\n");
-                }
-            }
-
-            return stringBuilder.ToString();
-        }
     }
 }

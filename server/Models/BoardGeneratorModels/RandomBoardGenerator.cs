@@ -35,7 +35,6 @@ namespace BattleshipAPI.Model
         {
             Board board = new Board();
 
-            // TODO move the ship list to configuration file.
             List<Ship> ships = new List<Ship>()
             {
                 new Carrier(),

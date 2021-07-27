@@ -58,10 +58,6 @@ namespace BattleshipAPI.Model
         {
             Hits++;
         }
-
-
-        // FOR DEBUG PURPOSES TODO REMOVE
-        public new abstract string ToString();
     }
 
     // Keeping ship types as derivatives (instead just giving them certain length) so that it's possible to diffrenciate between them.
@@ -69,45 +65,25 @@ namespace BattleshipAPI.Model
     {
         public Carrier() : base((int)ShipLength.Carrier) { }
 
-        public override string ToString()
-        {
-            return "C";
-        }
     }
 
     public class Battleship : Ship
     {
         public Battleship() : base((int)ShipLength.Battleship) { }
-        public override string ToString()
-        {
-            return "B";
-        }
     }
 
     public  class Destroyer : Ship
     {
         public Destroyer() : base((int)ShipLength.Destroyer) { }
-        public override string ToString()
-        {
-            return "D";
-        }
     }
 
     public class Submarine : Ship
     {
         public Submarine() : base((int)ShipLength.Submarine) { }
-        public override string ToString()
-        {
-            return "S";
-        }
     }
 
     public class PatrolBoat : Ship
     {
         public PatrolBoat() : base((int)ShipLength.PatrolBoat) { }
-        public override string ToString()
-        {
-            return "P";
-        }
     }
 }
